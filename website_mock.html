@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Drag and Drop File Upload</h2>
+<form action="/upload" method="post" enctype="multipart/form-data">
+  <input type="file" id="file" name="file" multiple>
+  <input type="submit">
+</form>
+
+<script>
+document.getElementById("file").addEventListener("drop", function(event) {
+  event.preventDefault();
+  if (event.dataTransfer.items) {
+    for (var i = 0; i < event.dataTransfer.items.length; i++) {
+      if (event.dataTransfer.items[i].kind === 'file') {
+        var file = event.dataTransfer.items[i].getAsFile();
+        console.log('... file[' + i + '].name = ' + file.name);
+      }
+    }
+  }
+});
+</script>
+
+</body>
+</html>
